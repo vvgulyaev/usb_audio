@@ -1,0 +1,13 @@
+audio_mic_node.c:188:16:AUDIO_MicStart	0	static
+audio_mic_node.c:207:16:AUDIO_MicStop	0	static
+audio_mic_node.c:226:16:AUDIO_MicChangeFrequency	0	static
+audio_mic_node.c:242:16:AUDIO_MicMute	0	static
+audio_mic_node.c:258:16:AUDIO_MicSetVolume	0	static
+audio_mic_node.c:274:16:AUDIO_MicGetVolumeDefaultsValues	0	static
+audio_mic_node.c:360:16:AUDIO_MicStartReadCount	0	static
+audio_mic_node.c:380:18:AUDIO_MicGetLastReadCount	0	static
+audio_mic_node.c:161:16:AUDIO_MicDeInit	8	static
+audio_mic_node.c:290:13:AUDIO_FillDataToBuffer	24	static
+audio_mic_node.c:94:11:AUDIO_DFSDM_MEMS_MicInit	24	static
+audio_mic_node.c:132:6:BSP_AUDIO_IN_HalfTransfer_CallBack	0	static
+audio_mic_node.c:146:6:BSP_AUDIO_IN_TransferComplete_CallBack	0	static

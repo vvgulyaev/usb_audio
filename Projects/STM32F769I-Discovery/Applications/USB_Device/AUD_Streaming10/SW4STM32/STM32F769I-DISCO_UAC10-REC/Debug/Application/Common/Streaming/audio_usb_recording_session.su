@@ -1,0 +1,10 @@
+audio_usb_recording_session.c:391:16:USB_AudioRecordingGetState	0	static
+audio_usb_recording_session.c:403:15:USB_AudioRecordingSofReceived	16	static
+audio_usb_recording_session.c:232:16:USB_AudioRecordingSessionStop.isra.0	16	static
+audio_usb_recording_session.c:359:16:USB_AudioRecordingSetAudioStreamingInterfaceAlternateSetting	48	static
+audio_usb_recording_session.c:252:16:USB_AudioRecordingSessionDeInit	16	static
+audio_usb_recording_session.c:466:13:USB_AudioRecordingSynchroInit.isra.1	8	static
+audio_usb_recording_session.c:287:16:USB_AudioRecordingSessionCallback	16	static
+audio_usb_recording_session.c:112:10:AUDIO_RecordingSessionInit	56	static
+audio_usb_recording_session.c:612:9:USB_AudioRecordingSynchronizationGetSamplesCountToAddInNextPckt	0	static
+audio_usb_recording_session.c:626:10:USB_AudioRecordingSynchronizationNotificationSamplesRead	0	static
