@@ -10,5 +10,5 @@
 makefile
 *.map
 *.launch
-*/STM32F746G-DISCO_UAC10-REC/*
+Projects/STM32F746G-Discovery/Applications/USB_Device/AUD_Streaming10/SW4STM32/STM32F746G-DISCO_UAC10-REC/*
 
