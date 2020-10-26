@@ -111,8 +111,8 @@ Connectivity, USB Device, AUDIO, , Full Speed
   - USB_Device/AUD_Streaming10/Src/stm32f7xx_hal_msp.c               Timer for playback volume change handling msp init 
   - USB_Device\Extension\Drivers\BSP\Components\wm8994\wm8994_ex.c                      Customized wm8994.c 
   - USB_Device\Extension\Drivers\BSP\Components\wm8994\wm8994_ex.h                      Customized wm8994.h 
-  - USB_Device\Extension\Drivers\BSP\STM32F769I-Discovery\stm32f769i_discovery_audio_ex.h           Customized stm32446e_eval_audio.h
-  - USB_Device\Extension\Drivers\BSP\STM32F769I-Discovery\stm32f769i_discovery_audio_ex.c           Customized stm32446e_eval_audio.c
+  - USB_Device\Extension\Drivers\BSP\STM32746G-Discovery\stm32746g_discovery_audio_ex.h           Customized stm32446e_eval_audio.h
+  - USB_Device\Extension\Drivers\BSP\STM32746G-Discovery\stm32746g_discovery_audio_ex.c           Customized stm32446e_eval_audio.c
 
 
 

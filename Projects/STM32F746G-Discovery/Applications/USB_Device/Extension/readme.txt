@@ -26,8 +26,8 @@ A suffix "_ex" is added to the name of customized files.
        
 @par Directory contents
   - USB_Device\Extension\Drivers\BSP\Components\wm8994\wm8994_ex.c                      Customized wm8994.c 
-  - USB_Device\Extension\Drivers\BSP\STM32F769I-Discovery\stm32f769i_discovery_audio_ex.h           Customized stm32f769i_discovery_.h
-  - USB_Device\Extension\Drivers\BSP\STM32F769I-Discovery\stm32f769i_discovery_audio_ex.c           Customized stm32f769i_discovery_.c
+  - USB_Device\Extension\Drivers\BSP\STM32746G-Discovery\stm32746g_discovery_audio_ex.h           Customized stm32746g_discovery_.h
+  - USB_Device\Extension\Drivers\BSP\STM32746G-Discovery\stm32746g_discovery_audio_ex.c           Customized stm32746g_discovery_.c
   - USB_Device\Extension\Drivers\STM32F7xx_HAL_Driver\hal_usb_ex.h                                  MACROS used from HAL-USB
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */
