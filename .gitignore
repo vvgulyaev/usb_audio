@@ -1,0 +1,8 @@
+*.d
+*.o
+*.elf
+*.log
+*.mk
+*.list
+*.xml
+
