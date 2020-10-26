@@ -5,4 +5,10 @@
 *.mk
 *.list
 *.xml
+.cproject_org
+.project_org
+makefile
+*.map
+*.launch
+*/STM32F746G-DISCO_UAC10-REC/*
 
