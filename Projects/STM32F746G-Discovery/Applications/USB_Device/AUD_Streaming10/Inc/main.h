@@ -27,7 +27,7 @@
 #include "usbd_desc.h"
 #include "usbd_audio.h"
 #include "usbd_audio_if.h"
-#include "stm32f769i_discovery_audio_ex.h"
+#include "stm32746g_discovery_audio_ex.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/

@@ -1,10 +1,10 @@
   /**
   ******************************************************************************
-  * @file    stm32f769i_discovery_audio_ex.h
+  * @file    stm32746g_discovery_audio_ex.h
   * @author  MCD Application Team 
   * @brief   This file contains the common defines and functions prototypes for
   *          the stm32446e_eval_audio_ex.c driver.
-  *          It is extended  from [stm32f769i_discovery_audio.h, version V2.0.0, published in STM32Cube for STM32F7 firmware 1.6.0].
+  *          It is extended  from [stm32746g_discovery_audio.h, version V2.0.0, published in STM32Cube for STM32F7 firmware 1.6.0].
   *          modified fields : 
   *                                - AUDIO_OUT_SAIx_DMAx_PERIPH_DATA_SIZE
   *                                  & AUDIO_OUT_SAIx_DMAx_MEM_DATA_SIZE:  modified to support 24bit (32bit with padding)
@@ -26,8 +26,8 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __STM32F769I_DISCOVERY_AUDIO_EX_H
-#define __STM32F769I_DISCOVERY_AUDIO_EX_H
+#ifndef __STM32746G_DISCOVERY_AUDIO_EX_H
+#define __STM32746G_DISCOVERY_AUDIO_EX_H
 
 #ifdef __cplusplus
  extern "C" {
@@ -36,29 +36,29 @@
 /* Includes ------------------------------------------------------------------*/
 /* Include audio component Driver */
 #include "wm8994_ex.h"
-#include "stm32f769i_discovery.h"
+#include "stm32746g_discovery.h"
 #include <stdlib.h>
 
 /** @addtogroup BSP
   * @{
   */ 
 
-/** @addtogroup STM32F769I_DISCOVERY
+/** @addtogroup STM32746G_DISCOVERY
   * @{
   */
     
-/** @defgroup STM32F769I_DISCOVERY_AUDIO STM32F769I_DISCOVERY_AUDIO
+/** @defgroup STM32746G_DISCOVERY_AUDIO STM32746G_DISCOVERY_AUDIO
   * @{
   */
 
-/** @defgroup STM32F769I_DISCOVERY_AUDIO_Exported_Types STM32F769I_DISCOVERY_AUDIO Exported Types
+/** @defgroup STM32746G_DISCOVERY_AUDIO_Exported_Types STM32746G_DISCOVERY_AUDIO Exported Types
   * @{
   */
 /**
   * @}
   */ 
 
-/** @defgroup STM32F769I_DISCOVERY_AUDIO_Exported_Constants STM32F769I_DISCOVERY_AUDIO Exported Constants
+/** @defgroup STM32746G_DISCOVERY_AUDIO_Exported_Constants STM32746G_DISCOVERY_AUDIO Exported Constants
   * @{
   */
 
@@ -243,7 +243,7 @@
   * @}
   */
    
-/** @defgroup STM32F769I_DISCOVERY_AUDIO_Exported_Macros STM32F769I_DISCOVERY_AUDIO Exported Macros
+/** @defgroup STM32746G_DISCOVERY_AUDIO_Exported_Macros STM32746G_DISCOVERY_AUDIO Exported Macros
   * @{
   */
 #define DMA_MAX(x)           (((x) <= DMA_MAX_SZE)? (x):DMA_MAX_SZE)
@@ -251,7 +251,7 @@
   * @}
   */ 
 
-/** @defgroup STM32F769I_DISCOVERY_AUDIO_OUT_Exported_Functions STM32F769I_DISCOVERY_AUDIO_OUT Exported Functions
+/** @defgroup STM32746G_DISCOVERY_AUDIO_OUT_Exported_Functions STM32746G_DISCOVERY_AUDIO_OUT Exported Functions
   * @{
   */
 uint8_t BSP_AUDIO_OUT_Init_Ext(uint16_t OutputDevice, uint8_t Volume, uint32_t AudioFreq, uint8_t AudioResolution);
@@ -288,7 +288,7 @@ void  BSP_AUDIO_OUT_MspDeInit(SAI_HandleTypeDef *hsai, void *Params);
   * @}
   */ 
 
-/** @defgroup STM32F769I_DISCOVERY_AUDIO_IN_Exported_Functions STM32F769I_DISCOVERY_AUDIO_IN Exported Functions
+/** @defgroup STM32746G_DISCOVERY_AUDIO_IN_Exported_Functions STM32746G_DISCOVERY_AUDIO_IN Exported Functions
   * @{
   */
 uint8_t BSP_AUDIO_IN_Init(uint32_t AudioFreq, uint32_t BitRes, uint32_t ChnlNbr);
@@ -340,6 +340,6 @@ void BSP_AUDIO_IN_MspDeInit(void);
 }
 #endif
 
-#endif /* __STM32F769I_DISCOVERY_AUDIO_EX_H */
+#endif /* __STM32746G_DISCOVERY_AUDIO_EX_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

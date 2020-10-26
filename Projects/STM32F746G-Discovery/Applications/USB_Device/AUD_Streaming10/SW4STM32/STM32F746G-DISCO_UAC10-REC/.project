@@ -222,9 +222,9 @@
 			<locationURI>PARENT-6-PROJECT_LOC/Common/Streaming/Src/usbd_audio_if.c</locationURI>
 		</link>
 		<link>
-			<name>Drivers/BSP/STM32746G-DISCOVERY/stm32746g_discovery.c</name>
+			<name>Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.c</name>
 			<type>1</type>
-			<locationURI>PARENT-7-PROJECT_LOC/Drivers/STM32746G-DISCOVERY/stm32746g_discovery.c</locationURI>
+			<locationURI>PARENT-7-PROJECT_LOC/Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.c</locationURI>
 		</link>
 		<link>
 			<name>Middlewares/STM32_USBD_Library/Core/usbd_ctlreq.c</name>
@@ -237,9 +237,9 @@
 			<locationURI>PARENT-7-PROJECT_LOC/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c</locationURI>
 		</link>
 		<link>
-			<name>Application/Extension/Drivers/BSP/STM32746G-DISCOVERY/stm32746g_discovery_audio_ex.c</name>
+			<name>Application/Extension/Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_audio_ex.c</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/Extension/Drivers/BSP/STM32746G-DISCOVERY/stm32746g_discovery_audio_ex.c</locationURI>
+			<locationURI>PARENT-3-PROJECT_LOC/Extension/Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_audio_ex.c</locationURI>
 		</link>
 		<link>
 			<name>Application/Common/Middlewares/ST/STM32_USB_Device_Library/Core/usbd_core_ex.c</name>

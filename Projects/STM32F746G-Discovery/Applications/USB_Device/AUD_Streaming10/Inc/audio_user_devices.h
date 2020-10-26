@@ -26,7 +26,7 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f769i_discovery_audio_ex.h"
+#include "stm32746g_discovery_audio_ex.h"
 #include "usb_audio.h"
    
 /* Exported constants --------------------------------------------------------*/
