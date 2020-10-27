@@ -316,7 +316,7 @@ void    BSP_AUDIO_IN_Error_CallBack(void);
      
 /* These function can be modified in case the current settings (e.g. DMA stream)
    need to be changed for specific application needs */
-void BSP_AUDIO_IN_ClockConfig(DFSDM_Filter_HandleTypeDef *hdfsdm_filter, uint32_t AudioFreq, void *Params);
+//void BSP_AUDIO_IN_ClockConfig(DFSDM_Filter_HandleTypeDef *hdfsdm_filter, uint32_t AudioFreq, void *Params);
 void BSP_AUDIO_IN_MspInit(void);
 void BSP_AUDIO_IN_MspDeInit(void);
 

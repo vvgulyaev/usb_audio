@@ -34,8 +34,8 @@ extern SAI_HandleTypeDef haudio_out_sai;
 extern TIM_HandleTypeDef    TimHandle;
 #endif /* USE_AUDIO_TIMER_VOLUME_CTRL */
 
-extern DFSDM_Filter_HandleTypeDef       hAudioInTopLeftFilter;
-extern DFSDM_Filter_HandleTypeDef       hAudioInTopRightFilter;
+//extern DFSDM_Filter_HandleTypeDef       hAudioInTopLeftFilter;
+//extern DFSDM_Filter_HandleTypeDef       hAudioInTopRightFilter;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
@@ -193,20 +193,20 @@ void AUDIO_OUT_SAIx_DMAx_IRQHandler(void)
   * @param None
   * @retval None
   */
-void AUDIO_DFSDMx_DMAx_TOP_LEFT_IRQHandler(void)
-{
-  HAL_DMA_IRQHandler(hAudioInTopLeftFilter.hdmaReg);
-}
+//void AUDIO_DFSDMx_DMAx_TOP_LEFT_IRQHandler(void)
+//{
+//  HAL_DMA_IRQHandler(hAudioInTopLeftFilter.hdmaReg);
+//}
 
 /**
   * @brief This function handles DMA2 Stream 0 interrupt request.
   * @param None
   * @retval None
   */
-void AUDIO_DFSDMx_DMAx_TOP_RIGHT_IRQHandler(void)
-{
-  HAL_DMA_IRQHandler(hAudioInTopRightFilter.hdmaReg);
-}
+//void AUDIO_DFSDMx_DMAx_TOP_RIGHT_IRQHandler(void)
+//{
+//  HAL_DMA_IRQHandler(hAudioInTopRightFilter.hdmaReg);
+//}
 
 /**
   * @brief  This function handles PPP interrupt request.
