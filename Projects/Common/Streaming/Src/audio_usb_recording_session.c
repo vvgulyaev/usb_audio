@@ -139,7 +139,7 @@ static  USB_AudioRecordingSynchronizationParams_t RecordingSynchronizationParams
   /* create list of node */
 
   /* create mic node */
-  AUDIO_MicInit(&RecordingAudioDescription, &rec_session->session, (uint32_t)&RecordingMicrophoneNode);
+  //AUDIO_MicInit(&RecordingAudioDescription, &rec_session->session, (uint32_t)&RecordingMicrophoneNode);
   rec_session->session.node_list = (AUDIO_Node_t*)&RecordingMicrophoneNode;
 
   /* create record output */
