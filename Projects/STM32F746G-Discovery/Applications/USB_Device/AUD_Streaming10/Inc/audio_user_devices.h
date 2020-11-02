@@ -30,30 +30,26 @@
 #include "usb_audio.h"
    
 /* Exported constants --------------------------------------------------------*/
-#if USE_AUDIO_DFSDM_MEMS_MIC
-#define AUDIO_MAX_SAMPLE_COUNT_LENGTH(frq) (((frq) + 999)/1000)
-#define AUDIO_SAMPLE_COUNT_LENGTH(frq) ((uint32_t)(((uint32_t)(frq))/1000))
-#define AUDIO_PACKET_SAMPLES_COUNT(frq) ((frq)/1000)
-#endif /* USE_AUDIO_DFSDM_MEMS_MIC */
 /* Exported types ------------------------------------------------------------*/
 #if  USE_USB_AUDIO_RECORDING
-#if USE_AUDIO_DFSDM_MEMS_MIC
+#if USE_AUDIO_MEMS_MIC
 typedef struct
 {
-  int32_t scratch[(AUDIO_SAMPLE_COUNT_LENGTH(USB_AUDIO_CONFIG_RECORD_FREQ_MAX))<<2];
+  uint16_t pdm_buff[PDM_BUF_SIZE(USB_AUDIO_CONFIG_RECORD_FREQ_MAX)];
+  uint8_t pdm_tmp_buff[PDM_BUF_SIZE(USB_AUDIO_CONFIG_RECORD_FREQ_MAX)];
   uint16_t writing_step;
-  uint16_t packet_sample_count;
-  uint8_t packet_sample_size;
-  uint8_t pcm_used; /* begin of play */
+  uint32_t pdm_packet_size;
+  uint8_t bos; /* begin of play */
   uint8_t cmd; /* cmd to execute in interruption routine */
 #if USE_AUDIO_RECORDING_USB_IMPLICIT_SYNCHRO
-  uint16_t dma_remaining; /* The number of remaining bytes in the current DMA Stream transfer*/
+  uint32_t dma_remaining; /* The number of remaining bytes in the current DMA Stream transfer*/
 #endif /* USE_AUDIO_RECORDING_USB_IMPLICIT_SYNCHRO*/
 }AUDIO_MicrophoneSpecificParams_t;
-#endif /* USE_AUDIO_DFSDM_MEMS_MIC */
-#define AUDIO_USER_MicInit AUDIO_DFSDM_MEMS_MicInit
+#endif /* USE_AUDIO_MEMS_MIC */
+#define AUDIO_USER_MicInit AUDIO_MEMS_MicInit
 #endif /* USE_USB_AUDIO_RECORDING */
 #if USE_USB_AUDIO_PLAYBACK
+#if !USE_AUDIO_SPEAKER_DUMMY
 typedef struct
 {
   uint16_t               injection_size;         /* the nominal size of the unit packet sent using DMA to SAI*/
@@ -66,6 +62,7 @@ typedef struct
   __IO uint8_t           cmd;                    /* this field contains commands to execute within next transfer complete call(or in next Volume change interrupt) */
   uint16_t               dma_remaining;  /* used for synchronization, it helps to provide the counter of played samples */
 } AUDIO_SpeakerSpecificParms_t;
+#endif /*USE_AUDIO_SPEAKER_DUMMY*/
 #endif /* USE_USB_AUDIO_PLAYBACK */
 /* Exported macros -----------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */

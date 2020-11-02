@@ -69,7 +69,7 @@ void HAL_PCD_MspInit(PCD_HandleTypeDef *hpcd)
     GPIO_InitStruct.Pull = GPIO_PULLUP;
     GPIO_InitStruct.Alternate = GPIO_AF10_OTG_FS;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
+    
     /* Enable USB FS Clock */
     __HAL_RCC_USB_OTG_FS_CLK_ENABLE();
     
@@ -81,12 +81,10 @@ void HAL_PCD_MspInit(PCD_HandleTypeDef *hpcd)
   }
   else if(hpcd->Instance == USB_OTG_HS)
   {
-    /* Configure USB FS GPIOs */
+    /* Configure USB HS GPIOs */
     __HAL_RCC_GPIOA_CLK_ENABLE();
     __HAL_RCC_GPIOB_CLK_ENABLE();
     __HAL_RCC_GPIOC_CLK_ENABLE();
-    __HAL_RCC_GPIOH_CLK_ENABLE();
-    __HAL_RCC_GPIOI_CLK_ENABLE();
     
     /* CLK */
     GPIO_InitStruct.Pin = GPIO_PIN_5;
@@ -106,7 +104,7 @@ void HAL_PCD_MspInit(PCD_HandleTypeDef *hpcd)
     
     /* D1 D2 D3 D4 D5 D6 D7 */
     GPIO_InitStruct.Pin = GPIO_PIN_0  | GPIO_PIN_1  | GPIO_PIN_5 |\
-      GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13;
+      GPIO_PIN_10 | GPIO_PIN_2 | GPIO_PIN_12 | GPIO_PIN_13;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Alternate = GPIO_AF10_OTG_HS;
@@ -120,18 +118,18 @@ void HAL_PCD_MspInit(PCD_HandleTypeDef *hpcd)
     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
     
     /* NXT */
-    GPIO_InitStruct.Pin = GPIO_PIN_4;
+    GPIO_InitStruct.Pin = GPIO_PIN_3;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Alternate = GPIO_AF10_OTG_HS;
-    HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
     
     /* DIR */
-    GPIO_InitStruct.Pin = GPIO_PIN_11;
+    GPIO_InitStruct.Pin = GPIO_PIN_2;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Alternate = GPIO_AF10_OTG_HS;
-    HAL_GPIO_Init(GPIOI, &GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
     __HAL_RCC_USB_OTG_HS_ULPI_CLK_ENABLE();
    
     /* Enable USB HS Clocks */
@@ -316,87 +314,28 @@ void HAL_PCD_DisconnectCallback(PCD_HandleTypeDef *hpcd)
   */
 USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
 {
-#ifdef USE_USB_FS_INTO_HS
   /* Set LL Driver parameters */
-  hpcd.Instance = USB_OTG_HS;
-  hpcd.Init.dev_endpoints = 6;
-  hpcd.Init.use_dedicated_ep1 = 0;
-  hpcd.Init.ep0_mps = 0x40;
-  
-  /* Be aware that enabling DMA mode will result in data being sent only by
-  multiple of 4 packet sizes. This is due to the fact that USB DMA does
-  not allow sending data from non word-aligned addresses.
-  For this specific application, it is advised to not enable this option
-  unless required. */
-  hpcd.Init.dma_enable = 0;
-  hpcd.Init.low_power_enable = 0;
-  hpcd.Init.lpm_enable = 0;
-  hpcd.Init.phy_itface = PCD_PHY_ULPI;
-  hpcd.Init.Sof_enable = 1;
-  hpcd.Init.speed = PCD_SPEED_FULL;
+  hpcd.Instance                 = USB_OTG_FS;
+  hpcd.Init.dev_endpoints       = 5;
+  hpcd.Init.use_dedicated_ep1   = 0;
+  hpcd.Init.ep0_mps             = 0x40;
+  hpcd.Init.dma_enable          = 0;
+  hpcd.Init.low_power_enable    = 0;
+  hpcd.Init.phy_itface          = PCD_PHY_EMBEDDED;
+  hpcd.Init.Sof_enable          = 1;
+  hpcd.Init.speed               = PCD_SPEED_FULL;
   hpcd.Init.vbus_sensing_enable = 1;
+  hpcd.Init.lpm_enable          = 0;
   
   /* Link The driver to the stack */
-  hpcd.pData = pdev;
-  pdev->pData = &hpcd;
+  hpcd.pData    = pdev;
+  pdev->pData   = &hpcd;
   
   /* Initialize LL Driver */
   HAL_PCD_Init(&hpcd);
   
   USBD_LL_Setup_Fifo();
-#else
-#ifdef USE_USB_FS
-  /* Set LL Driver parameters */
-  hpcd.Instance = USB_OTG_FS;
-  hpcd.Init.dev_endpoints = 4; /* @TODO check it */
-  hpcd.Init.use_dedicated_ep1 = 0;
-  hpcd.Init.ep0_mps = 0x40;
-  hpcd.Init.dma_enable = 0;
-  hpcd.Init.low_power_enable = 0;
-  hpcd.Init.phy_itface = PCD_PHY_EMBEDDED;
-  hpcd.Init.Sof_enable = 1;
-  hpcd.Init.speed = PCD_SPEED_FULL;
-  hpcd.Init.vbus_sensing_enable = 1;
-  hpcd.Init.lpm_enable = 0;
-  
-  /* Link The driver to the stack */
-  hpcd.pData = pdev;
-  pdev->pData = &hpcd;
-  
-  /* Initialize LL Driver */
-  HAL_PCD_Init(&hpcd);
-  USBD_LL_Setup_Fifo(); 
-#endif
-#ifdef USE_USB_HS
-  /* Set LL Driver parameters */
-  hpcd.Instance = USB_OTG_HS;
-  hpcd.Init.dev_endpoints = 6;
-  hpcd.Init.use_dedicated_ep1 = 0;
-  hpcd.Init.ep0_mps = 0x40;
-  
-  /* Be aware that enabling DMA mode will result in data being sent only by
-  multiple of 4 packet sizes. This is due to the fact that USB DMA does
-  not allow sending data from non word-aligned addresses.
-  For this specific application, it is advised to not enable this option
-  unless required. */
-  hpcd.Init.dma_enable = 0;
-  hpcd.Init.low_power_enable = 0;
-  hpcd.Init.lpm_enable = 0;
-  hpcd.Init.phy_itface = PCD_PHY_ULPI;
-  hpcd.Init.Sof_enable = 1;
-  hpcd.Init.speed = PCD_SPEED_HIGH;
-  hpcd.Init.vbus_sensing_enable = 1;
-  
-  /* Link The driver to the stack */
-  hpcd.pData = pdev;
-  pdev->pData = &hpcd;
-  
-  /* Initialize LL Driver */
-  HAL_PCD_Init(&hpcd);
-  
-  USBD_LL_Setup_Fifo();
-#endif
-#endif  
+
   return USBD_OK;
 }
 
@@ -633,7 +572,7 @@ static USBD_StatusTypeDef USBD_LL_Setup_Fifo(void)
  }
  
  rx_fifo_size += (5*1/*number of control endpoints*/+8
-                    +1/* for status information*/+2*8/*number of OUT endpoints*/+1/*for Global NAK*/);
+                    +1/* for status information*/+2*6/*number of OUT endpoints*/+1/*for Global NAK*/);
  
   if(tx_fifo_used_size + rx_fifo_size<=USB_FIFO_WORD_SIZE)
   {

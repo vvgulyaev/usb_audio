@@ -26,6 +26,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 USBD_HandleTypeDef USBD_Device;
+
 #if USE_AUDIO_TIMER_VOLUME_CTRL
 TIM_HandleTypeDef    TimHandle;
 /* Prescaler declaration */
@@ -33,7 +34,6 @@ uint32_t uwPrescalerValue = 0;
 #endif /* USE_AUDIO_TIMER_VOLUME_CTRL */
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
-
 #if USE_AUDIO_TIMER_VOLUME_CTRL
 static HAL_StatusTypeDef Timer_Init(void);
 #endif /* USE_AUDIO_TIMER_VOLUME_CTRL */
@@ -48,16 +48,10 @@ extern USBD_AUDIO_InterfaceCallbacksfTypeDef audio_class_interface;
   */
 int main(void)
 {
-  
-  /* STM32F7xx HAL library initialization:
-       - Configure the Flash ART accelerator on ITCM interface
-       - Configure the Systick to generate an interrupt each 1 msec
-       - Set NVIC Group Priority to 4
-       - Low Level Initialization
-     */
+  /* STM32F446xx HAL library initialization */
   HAL_Init();
-  
-  /* Configure the System clock to have a frequency of 216 MHz */
+  BSP_LED_Init(LED1);
+  /* Configure the system clock to 168 MHz */
   SystemClock_Config();
   
   /* Init Device Library */
@@ -71,18 +65,17 @@ int main(void)
   
   /* Start Device Process */
   USBD_Start(&USBD_Device);
-
+  
 #if USE_AUDIO_TIMER_VOLUME_CTRL
   /* Configure timer for volume control handling */
   Timer_Init();
-#endif /* USE_AUDIO_TIMER_VOLUME_CTRL */
+#endif /* USE_AUDIO_TIMER_VOLUME_CTRL */  
 
   /* Run Application (Interrupt mode) */
   while (1)
   {
   }
 }
-
 #if USE_AUDIO_TIMER_VOLUME_CTRL
 
 /**
@@ -149,23 +142,45 @@ static HAL_StatusTypeDef Timer_Init(void)
 #endif /* USE_AUDIO_TIMER_VOLUME_CTRL */
 
 /**
+  * @brief  This function is executed in case of error occurrence.
+  * @param  None
+  * @retval None
+  */
+void Error_Handler(void)
+{
+    BSP_LED_On(LED1);
+}
+
+/**
+  * @brief  This function is executed in case of an error occurrence in Audio Class.
+  * @param  None
+  * @retval None
+  */
+void USBD_error_handler(void)
+{
+Error_Handler();
+}
+
+/**
   * @brief  System Clock Configuration
-  *         The system Clock is configured as follow :
+  *         The system Clock is configured as follow : 
   *            System Clock source            = PLL (HSE)
-  *            SYSCLK(Hz)                     = 192000000
-  *            HCLK(Hz)                       = 192000000
+  *            SYSCLK(Hz)                     = 168000000
+  *            HCLK(Hz)                       = 168000000
   *            AHB Prescaler                  = 1
   *            APB1 Prescaler                 = 4
   *            APB2 Prescaler                 = 2
-  *            HSE Frequency(Hz)              = 25000000
-  *            PLL_M                          = 25
-  *            PLL_N                          = 384
+  *            HSE Frequency(Hz)              = 8000000
+  *            PLL_M                          = 8
+  *            PLL_N                          = 336
   *            PLL_P                          = 2
-  *            PLL_Q                          = 8
-  *            PLL_R                          = 7
+  *            PLL_Q                          = 7
+  *            PLL_R                          = 2
   *            VDD(V)                         = 3.3
   *            Main regulator output voltage  = Scale1 mode
-  *            Flash Latency(WS)              = 6
+  *            Flash Latency(WS)              = 5
+  *         The USB clock configuration from Main PLL:
+  *            PLLQ                           = 7
   * @param  None
   * @retval None
   */
@@ -210,29 +225,19 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_CLK48;
+  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_SAI2|RCC_PERIPHCLK_CLK48;
+  PeriphClkInitStruct.PLLSAI.PLLSAIN = 192;
+  PeriphClkInitStruct.PLLSAI.PLLSAIR = 2;
+  PeriphClkInitStruct.PLLSAI.PLLSAIQ = 2;
+  PeriphClkInitStruct.PLLSAI.PLLSAIP = RCC_PLLSAIP_DIV2;
+  PeriphClkInitStruct.PLLSAIDivQ = 1;
+  PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_2;
+  PeriphClkInitStruct.Sai2ClockSelection = RCC_SAI2CLKSOURCE_PLLSAI;
   PeriphClkInitStruct.Clk48ClockSelection = RCC_CLK48SOURCE_PLL;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
   {
     Error_Handler();
   }
-}
-
-/**
-  * @brief  This function is executed in case of error occurrence.
-  * @param  None
-  * @retval None
-  */
- void Error_Handler(void)
-{
-  /* User may add here some code to deal with this error */
-  while(1)
-  {
-  }
-}
-void USBD_error_handler(void)
-{
-  Error_Handler();
 }
 
 #ifdef  USE_FULL_ASSERT
