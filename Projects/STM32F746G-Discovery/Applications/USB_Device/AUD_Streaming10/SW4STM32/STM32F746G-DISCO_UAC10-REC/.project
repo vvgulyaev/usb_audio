@@ -42,11 +42,6 @@
 			<locationURI>PARENT-2-PROJECT_LOC/Src/audio_mic_node.c</locationURI>
 		</link>
 		<link>
-			<name>Application/User/audio_speaker_node.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Src/audio_speaker_node.c</locationURI>
-		</link>
-		<link>
 			<name>Application/User/main.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/Src/main.c</locationURI>
@@ -202,19 +197,9 @@
 			<locationURI>PARENT-6-PROJECT_LOC/Common/Streaming/Src/audio_dummymic_node.c</locationURI>
 		</link>
 		<link>
-			<name>Application/Common/Streaming/audio_dummyspeaker_node.c</name>
-			<type>1</type>
-			<locationURI>PARENT-6-PROJECT_LOC/Common/Streaming/Src/audio_dummyspeaker_node.c</locationURI>
-		</link>
-		<link>
 			<name>Application/Common/Streaming/audio_usb_nodes.c</name>
 			<type>1</type>
 			<locationURI>PARENT-6-PROJECT_LOC/Common/Streaming/Src/audio_usb_nodes.c</locationURI>
-		</link>
-		<link>
-			<name>Application/Common/Streaming/audio_usb_playback_session.c</name>
-			<type>1</type>
-			<locationURI>PARENT-6-PROJECT_LOC/Common/Streaming/Src/audio_usb_playback_session.c</locationURI>
 		</link>
 		<link>
 			<name>Application/Common/Streaming/audio_usb_recording_session.c</name>

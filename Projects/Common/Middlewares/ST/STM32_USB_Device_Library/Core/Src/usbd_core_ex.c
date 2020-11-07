@@ -92,6 +92,7 @@
 */
 USBD_StatusTypeDef USBD_Init(USBD_HandleTypeDef *pdev, USBD_DescriptorsTypeDef *pdesc, uint8_t id)
 {
+  USBD_StatusTypeDef ret;
   /* Check whether the USB Host handle is valid */
   if(pdev == NULL)
   {
@@ -115,9 +116,9 @@ USBD_StatusTypeDef USBD_Init(USBD_HandleTypeDef *pdev, USBD_DescriptorsTypeDef *
   pdev->dev_state  = USBD_STATE_DEFAULT;
   pdev->id = id;
   /* Initialize low level driver */
-  USBD_LL_Init(pdev);
+  ret = USBD_LL_Init(pdev);
   
-  return USBD_OK; 
+  return ret;
 }
 
 /**
